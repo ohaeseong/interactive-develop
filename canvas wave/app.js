@@ -8,7 +8,7 @@ class App {
 
         this.waveGroup = new WaveGroup();
 
-        window.addEventListener('resize', this.resize.bind(this), false);
+        // window.addEventListener('resize', this.resize.bind(this), false);
         this.resize();
 
         requestAnimationFrame(this.animate.bind(this));
@@ -16,7 +16,6 @@ class App {
 
     resize() {
         this.stageWidth = document.body.clientWidth;
-        console.log(this.stageWidth);
         this.stageHeight = document.body.clientHeight;
 
         this.canvas.width = this.stageWidth * 2;
