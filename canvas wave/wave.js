@@ -42,8 +42,8 @@ export class Wave {
 
         ctx.moveTo(prevX, prevY);
 
-        for (let i = 0; i < this.totalPoints; i++) {
-            if (i < this.totalPoints ) {
+        for (let i = 1; i < this.totalPoints; i++) {
+            if (i < this.totalPoints - 1) {
                 this.points[i].update();
             }
 

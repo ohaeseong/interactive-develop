@@ -8,7 +8,7 @@
                 margin: 0;
                 padding: 0;
             }
-            body { background: black; background-size: cover; }
+            body { background: white; background-size: cover; }
             canvas { border: 1px solid black; }
         </style>
     </head>
@@ -45,20 +45,21 @@
                 let y = 0 ;
                 let size = Math.floor(Math.random() * 3) + 1;
 
-                snowflakes.push({ "x": x, "y": y, "size": size });
+                let color = ['rgba(255, 0, 0, 0.4)', 'rgba(255, 255, 0, 1)', 'rgba(0, 255, 255, 1)'];
+                let randomColorIndex = Math.floor(Math.random() * 3);
+                let colorData = color[randomColorIndex];
+
+                snowflakes.push({ "x": x, "y": y, "size": size, "color": colorData });
             }
 
             // 눈송이
             function snow() {
                 addSnowFlakes();
-                
-
-                ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
-
                 for (let i in snowflakes) {
                     ctx.beginPath();
                     let ty = snowflakes[i].y += snowflakes[i].size * 0.5;
                     ctx.arc(snowflakes[i].x, snowflakes[i].y++, snowflakes[i].size, 0 ,Math.PI * 2);
+                    ctx.fillStyle = snowflakes[i].color;
                     ctx.fill();
                 }
 
@@ -80,7 +81,7 @@
                 ctx.clearRect(0, 0, ctxW, ctxH);
 
                 displayCount();
-                ctx.rotate(-0.3);
+                // ctx.rotate(-0.3);
                 snow();
                 ctx.restore();
             }
