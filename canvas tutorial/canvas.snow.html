@@ -8,8 +8,8 @@
                 margin: 0;
                 padding: 0;
             }
-            body { background: white; background-size: cover; }
-            canvas { border: 1px solid black; }
+            body { background: #32AAFF; background-size: cover; }
+            /* canvas { border: 1px solid black; } */
         </style>
     </head>
     <body>
@@ -19,11 +19,11 @@
             let canvas = document.getElementById('canvas');
             let ctx = canvas.getContext('2d');
 
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth + 100;
+            canvas.height = window.innerHeight + 100;
 
-            let ctxW = ctx.canvas.width + 100;
-            let ctxH = ctx.canvas.height + 100;
+            let ctxW = ctx.canvas.width;
+            let ctxH = ctx.canvas.height;
 
             // x의 좌표값을 랜덤 저장
             let x = Math.floor(Math.random() * ctxW) + 1;
@@ -33,19 +33,19 @@
             let size = Math.floor(Math.random() * 5) + 1;
 
             let snowflakes = [];
-            let totalCount = 10;
+            // let totalCount = 10;
 
             // 눈송이추가
             function addSnowFlakes() {
-                if(snowflakes >= totalCount) {
-                    return;
-                }
+                // if(snowflakes >= totalCount) {
+                //     return;
+                // }
 
                 let x = Math.floor(Math.random() * ctxW) - 100;
                 let y = 0 ;
                 let size = Math.floor(Math.random() * 3) + 1;
 
-                let color = ['rgba(255, 0, 0, 0.4)', 'rgba(255, 255, 0, 1)', 'rgba(0, 255, 255, 1)'];
+                let color = ['rgba(255, 255, 255, 1)', 'rgba(255, 255, 0, 1)', 'rgba(0, 255, 255, 1)'];
                 let randomColorIndex = Math.floor(Math.random() * 3);
                 let colorData = color[randomColorIndex];
 
@@ -86,7 +86,7 @@
                 ctx.restore();
             }
 
-            let animateFrame = setInterval(animate, 30);
+            let animateFrame = setInterval(animate, 20);
         </script>
     </body>
 </html>
