@@ -14,13 +14,20 @@
     </head>
     <body>
         <canvas id="canvas"></canvas>
+        <canvas id="circle_canvas"></canvas>
 
         <script>
             let canvas = document.getElementById('canvas');
             let ctx = canvas.getContext('2d');
 
+            let circle_canvas = document.getElementById('circle_canvas');
+            let circle_canvas_ctx = circle_canvas.getContext('2d');
+
             canvas.width = window.innerWidth + 100;
             canvas.height = window.innerHeight + 100;
+
+            circle_canvas.width = window.innerWidth + 100;
+            circle_canvas.height = window.innerHeight + 100;
 
             let ctxW = ctx.canvas.width;
             let ctxH = ctx.canvas.height;
@@ -57,7 +64,7 @@
                 addSnowFlakes();
                 for (let i in snowflakes) {
                     ctx.beginPath();
-                    let ty = snowflakes[i].y += snowflakes[i].size * 0.5;
+                    snowflakes[i].y += snowflakes[i].size * 0.5;
                     ctx.arc(snowflakes[i].x, snowflakes[i].y++, snowflakes[i].size, 0 ,Math.PI * 2);
                     ctx.fillStyle = snowflakes[i].color;
                     ctx.fill();
@@ -77,14 +84,32 @@
 
             // 눈송이 그리기
             function animate() {
-                ctx.save();
+                // ctx.save();
                 ctx.clearRect(0, 0, ctxW, ctxH);
 
                 displayCount();
                 // ctx.rotate(-0.3);
                 snow();
-                ctx.restore();
+                // ctx.restore();
             }
+
+            function drawCircle(event) {
+                let x = event.clientX;
+                let y = event.clientY;
+
+                circle_canvas_ctx.fillStyle = "black";
+
+                circle_canvas_ctx.beginPath();
+                circle_canvas_ctx.arc(x, y, 20, 0, Math.PI * 2);
+                circle_canvas_ctx.fill();
+
+                console.log('test', x, y, circle_canvas_ctx);
+            }
+
+            const body = document.body;
+            body.addEventListener('click', e => {
+                drawCircle(e);
+            });
 
             let animateFrame = setInterval(animate, 20);
         </script>
