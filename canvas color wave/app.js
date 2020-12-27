@@ -32,6 +32,7 @@ class App {
         };
 
         this.image = new Image();
+        
         this.image.src = 'gogh2.jpg';
         this.image.onload = () => {
             this.isLoaded = true;
